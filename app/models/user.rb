@@ -29,6 +29,7 @@
 #
 class User < ApplicationRecord
   include SimpleDiscussion::ForumUser
+
   has_person_name
   has_many :jobs, dependent: :destroy
 
@@ -36,7 +37,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-
 
   def name
     "#{first_name} #{last_name}"
