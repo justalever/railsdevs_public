@@ -18,6 +18,14 @@
 #   # policy.report_uri "/csp-violation-report-endpoint"
 # end
 
+Rails.application.config.content_security_policy do |policy|
+  if Rails.env.development?
+    policy.script_src :self, :https, :unsafe_eval
+  else
+    policy.script_src :self, :https
+  end
+end
+
 # If you are using UJS then enable automatic nonce generation
 # Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
 
