@@ -36,7 +36,7 @@
 class Job < ApplicationRecord
   extend FriendlyId
 
-  friendly_id :title, use: :slugged
+  friendly_id :slug_candidates, use: [:slugged, :finders]
 
   belongs_to :user
   has_rich_text :description
@@ -86,6 +86,10 @@ class Job < ApplicationRecord
 
   YEARS_OF_EXPERIENCE_RANGE = ["1","2","3","4","5","6","8","9","10","more than 10"].freeze
 
+  def slug_candidates
+    [:title, [:title, :company_name]]
+  end
+
   def pending?
     self.status == Job::JOB_STATUSES[:pending]
   end
@@ -94,7 +98,7 @@ class Job < ApplicationRecord
     self.status == Job::JOB_STATUSES[:published]
   end
 
-  def published?
+  def archived?
     self.status == Job::JOB_STATUSES[:archived]
   end
 
