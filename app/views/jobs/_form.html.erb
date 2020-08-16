@@ -65,7 +65,7 @@
       <div class="w-full mb-6 lg:pr-4 lg:w-1/3 lg:mb-0">
         <%= form.label :compensation_type, class: "label" %>
         <div class="relative">
-          <%= form.select :compensation_type, options_for_select(Job::COMPENSATION_TYPES), {prompt: "Select one" }, { class: "select" } %>
+          <%= form.select :compensation_type, Job::COMPENSATION_TYPES,{}, { class: "select" } %>
           <%= select_arrow %>
         </div>
       </div>
