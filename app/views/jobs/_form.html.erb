@@ -1,5 +1,5 @@
 <div class="p-10 mb-24 bg-white border rounded">
-  <%= form_with(model: job, local: true) do |form| %>
+  <%= form_with(model: job, local: true, multipart: true) do |form| %>
     <% if job.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
@@ -11,6 +11,16 @@
         </ul>
       </div>
     <% end %>
+
+    <div class="flex flex-wrap items-center justify-between input-group">
+      <div>
+        <%= form.label :company_logo, class: "label"%>
+        <%= form.file_field :company_logo %>
+      </div>
+      <% if form.object.company_logo.attached? %>
+        <%= image_tag form.object.company_logo, class: "w-24 h-auto"%>
+      <% end %>
+    </div>
 
     <div class="input-group">
       <%= form.label :title, class: "label"%>

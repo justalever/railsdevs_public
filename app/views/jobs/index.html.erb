@@ -1,46 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% content_for :hero do %>
+  <div class="py-24 mb-16 text-white bg-red-600">
+    <div class="container flex flex-wrap justify-center mx-auto text-center">
+      <h1 class="text-4xl font-black leading-tight lg:text-6xl">Find a Ruby on Rails developer</h1>
+      <p class="w-full text-lg text-red-100">The internet's number one resource for Ruby on Rails developers</p>
 
-<h1>Jobs</h1>
+      <div class="flex items-center mt-6 mb-3">
+        <%= link_to "Find a developer", "#", class: "btn bg-teal-600 hover:bg-teal-500 py-3 px-6 lg:mr-2 shadow-sm border border-teal-500"%>
+        <%= link_to "Find a job", jobs_path(anchor: "jobs-index"), class: "btn bg-red-700 lg:ml-2 py-3 px-6 hover:bg-red-600 shadow-sm border border-red-500" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Link to apply</th>
-      <th>Description</th>
-      <th>Company name</th>
-      <th>Company website</th>
-      <th>Company description</th>
-      <th>Role type</th>
-      <th>Compensation range</th>
-      <th>Remote</th>
-      <th>Years of experience</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      </div>
+      <p class="w-full">or find developer friends in the <%= link_to "community", "#", class: "underline" %></p>
+    </div>
+  </div>
+<% end %>
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.title %></td>
-        <td><%= job.link_to_apply %></td>
-        <td><%= job.description %></td>
-        <td><%= job.company_name %></td>
-        <td><%= job.company_website %></td>
-        <td><%= job.company_description %></td>
-        <td><%= job.compensation_range %></td>
-        <td><%= job.remote %></td>
-        <td><%= job.years_of_experience %></td>
-        <td><%= job.user_id %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Job', new_job_path %>
+<div id="jobs-index" class="container px-0 mx-auto mb-24 lg:px-48">
+  <%= render @jobs %>
+</div>

@@ -6,6 +6,8 @@
     <%= render "shared/flash_notice" %>
     <%= render "shared/header" %>
 
+    <%= yield :hero %>
+
     <main class="px-4 lg:px-10">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
