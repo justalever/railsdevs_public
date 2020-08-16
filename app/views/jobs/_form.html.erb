@@ -1,67 +1,88 @@
-<%= form_with(model: job, local: true) do |form| %>
-  <% if job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+<div class="p-10 mb-24 bg-white border rounded">
+  <%= form_with(model: job, local: true) do |form| %>
+    <% if job.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
-      <ul>
-        <% job.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% job.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-group">
+      <%= form.label :title, class: "label"%>
+      <%= form.text_field :title, class: "input" %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 input-group">
+      <div class="lg:col-span-1">
+        <%= form.label :link_to_apply, class: "label"%>
+        <%= form.text_field :link_to_apply, class: "input" %>
+      </div>
+
+      <div class="lg:col-span-1">
+        <%= form.label :headquarters, class: "label"%>
+        <%= form.text_field :headquarters, class: "input" %>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <%= form.label :description, class: "label"%>
+      <%= form.rich_text_area :description, class: "input" %>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 input-group">
+      <div class="lg:col-span-1">
+        <%= form.label :company_name, class: "label"%>
+        <%= form.text_field :company_name, class: "input" %>
+      </div>
+
+      <div class="lg:col-span-1">
+        <%= form.label :company_website, class: "label"%>
+        <%= form.text_field :company_website, class: "input" %>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <%= form.label :company_description, class: "label"%>
+      <%= form.rich_text_area :company_description, class: "input" %>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-start lg:flex-no-wrap input-group">
+      <div class="w-full mb-6 lg:pr-4 lg:w-1/3 lg:mb-0">
+        <%= form.label :compensation_type, class: "label" %>
+        <div class="relative">
+          <%= form.select :compensation_type, options_for_select(Job::COMPENSATION_TYPES), {prompt: "Select one" }, { class: "select" } %>
+          <%= select_arrow %>
+        </div>
+      </div>
+
+      <div class="w-full mb-6 lg:px-2 lg:w-auto lg:mb-0">
+        <%= form.label :compensation_range, class: "label"%>
+        <%= form.text_field :compensation_range, class: "input" %>
+      </div>
+
+      <div class="w-full lg:pl-4 lg:w-auto">
+        <%= form.label :estimated_hours, class: "label"%>
+        <%= form.text_field :estimated_hours, class: "input" %>
+      </div>
+    </div>
+
+    <div class="lg:pr-8 lg:w-1/3 input-group lg">
+      <%= form.label :years_of_experience, class: "label"%>
+      <%= form.text_field :years_of_experience, class: "input" %>
+    </div>
+
+    <div class="lg:w-1/2 input-group input-checkbox">
+      <%= form.check_box :remote %>
+      <%= form.label :remote, "Is this a remote only role?", class: "label"%>
+    </div>
+
+    <div class="input-group">
+      <%= form.submit  class: "btn btn-green"%>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :link_to_apply %>
-    <%= form.text_field :link_to_apply %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_name %>
-    <%= form.text_field :company_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_website %>
-    <%= form.text_field :company_website %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_description %>
-    <%= form.rich_text_area :company_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :compensation_range %>
-    <%= form.text_field :compensation_range %>
-  </div>
-
-  <div class="field">
-    <%= form.label :remote %>
-    <%= form.check_box :remote %>
-  </div>
-
-  <div class="field">
-    <%= form.label :years_of_experience %>
-    <%= form.text_field :years_of_experience %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

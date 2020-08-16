@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   mount SimpleDiscussion::Engine => "/forum"
 
   devise_for :users
-  root to: 'home#index'
+  root to: 'jobs#index'
 end

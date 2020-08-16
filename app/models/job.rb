@@ -38,11 +38,19 @@ class Job < ApplicationRecord
 
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
+  # relations
   belongs_to :user
   has_rich_text :description
   has_rich_text :company_description
   has_one_attached :company_logo
 
+  # scopes
+  scope :desc, -> { order(created_at: :desc) }
+  scope :pending, -> { where(status: JOB_STATUSES[:pending]) }
+  scope :published, -> { where(status: JOB_STATUSES[:published]) }
+  scope :archived, -> { where(status: JOB_STATUSES[:archived]) }
+
+  # constants
   COMPENSATION_TYPES = [
     "Contract",
     "Full-time"

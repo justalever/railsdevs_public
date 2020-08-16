@@ -1,6 +1,4 @@
-<h1>Editing Job</h1>
-
-<%= render 'form', job: @job %>
-
-<%= link_to 'Show', @job %> |
-<%= link_to 'Back', jobs_path %>
+<div class="max-w-4xl mx-auto">
+  <h1 class="my-4 text-2xl font-black leading-tight text-center lg:text-3xl">Edit your job <%= @job.title %></h1>
+  <%= render 'form', job: @job %>
+</div>
