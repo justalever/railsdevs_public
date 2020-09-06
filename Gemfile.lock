@@ -243,6 +243,7 @@ GEM
       tzinfo (>= 1.0.0)
     warden (1.2.8)
       rack (>= 2.0.6)
+    wdm (0.1.1)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -300,6 +301,7 @@ DEPENDENCIES
   stripe_event (~> 2.3)
   turbolinks (~> 5)
   tzinfo-data
+  wdm (>= 0.1.0)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

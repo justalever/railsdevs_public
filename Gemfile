@@ -27,6 +27,7 @@ gem "simple_discussion", "~> 1.2"
 gem "stripe_event", "~> 2.3"
 gem "stripe", "~> 5.22"
 gem 'whenever', '~> 1.0'
+gem 'wdm', '>= 0.1.0'
 
 group :development, :test do
   gem 'annotate', '~> 3.1', '>= 3.1.1'
