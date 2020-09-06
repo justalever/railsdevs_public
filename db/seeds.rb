@@ -22,7 +22,6 @@ employer.skip_confirmation!
 employer.save
 
 Job.create!(
-  id: 1,
   company_name: "Google",
   company_website: "https://google.com",
   compensation_range: "170,000 - 180,000",
@@ -46,7 +45,6 @@ Job.create!(
 )
 
 Job.create!(
-  id: 2,
   company_name: "Dropbox",
   company_website: "https://dropbox.com",
   compensation_range: nil,
@@ -70,7 +68,6 @@ Job.create!(
 )
 
 Job.create!(
-  id: 3,
   company_name: "Apple",
   company_website: "https://apple.com",
   compensation_range: "240,000 - 250,000",
