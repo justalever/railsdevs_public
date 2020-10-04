@@ -11,15 +11,43 @@
     <job-title :job="job" class="mb-6"></job-title>
     <apply-link :job="job" class="mb-6"></apply-link>
     <job-description :job="job" class="mb-6"></job-description>
-    <job-experience :job="job" class="mb-6"></job-experience>
-    <compensation-type :job="job" class="mb-6"></compensation-type>
-    <compensation-range :job="job" class="mb-6"></compensation-range>
-    <estimated-hours :job="job" class="mb-6"></estimated-hours>
-    <job-remote :job="job" class="mb-6"></job-remote>
+    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
+      <job-experience :job="job" class="lg:col-span-1"></job-experience>
+      <job-remote :job="job" class="lg:col-span-1"></job-remote>
+    </div>
+    <div class="grid grid-cols-1 gap-6 mb-10 lg:grid-cols-2">
+      <compensation-type :job="job" class="lg:col-span-1"></compensation-type>
+      <estimated-hours
+        v-if="jobType == 'Contract'"
+        class="lg:col-span-1"
+      ></estimated-hours>
+      <compensation-range
+        v-if="jobType == 'Full-time'"
+        class="lg:col-span-1"
+      ></compensation-range>
+    </div>
 
     <h3 class="mb-3 text-3xl font-black">About the company</h3>
 
-    <a @click="next()" class="btn btn-default">Next</a>
+    <div class="grid grid-cols-1 gap-6 mb-10 lg:grid-cols-2">
+      <div class="lg:col-span-1">
+        <p class="block w-full label">Company logo</p>
+        <file-select v-model="job.companyLogo"></file-select>
+        <p class="my-1 text-sm text-gray-500">
+          While not required, we recommend adding a company logo to help your
+          listing stand out.
+        </p>
+      </div>
+      <company-website :job="job" class="lg:col-span-1"></company-website>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
+      <company-name :job="job" class="lg:col-span-1"></company-name>
+      <company-email :job="job" class="lg:col-span-1"></company-email>
+    </div>
+    <company-description :job="job" class="mb-6"></company-description>
+
+    <a @click="next()" class="btn btn-teal btn-lg">Continue</a>
   </div>
 </template>
 
@@ -32,17 +60,32 @@ import CompensationType from "../fields/CompensationType";
 import CompensationRange from "../fields/CompensationRange";
 import EstimatedHours from "../fields/EstimatedHours";
 import JobRemote from "../fields/JobRemote";
+import CompanyName from "../fields/CompanyName";
+import CompanyEmail from "../fields/CompanyEmail";
+import CompanyWebsite from "../fields/CompanyWebsite";
+import CompanyDescription from "../fields/CompanyDescription";
+import FileSelect from "../fields/FileSelect";
 
 export default {
   components: {
     ApplyLink,
     CompensationType,
     CompensationRange,
+    CompanyName,
+    CompanyEmail,
+    CompanyWebsite,
+    CompanyDescription,
     JobTitle,
     JobDescription,
     JobExperience,
     JobRemote,
     EstimatedHours,
+    FileSelect,
+  },
+  data() {
+    return {
+      jobType: "Full-time",
+    };
   },
   props: {
     job: {
