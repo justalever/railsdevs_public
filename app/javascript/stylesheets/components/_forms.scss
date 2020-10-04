@@ -7,8 +7,8 @@
 
 .input {
   @apply appearance-none block w-full text-gray-700 border border-gray-400 rounded px-3 leading-tight bg-white shadow-inner;
-  padding-top: .65rem;
-  padding-bottom: .65rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
 }
 
 .input:focus,
@@ -17,13 +17,12 @@
 }
 
 .label {
-  @apply block text-gray-700 text-sm font-bold mb-2;
+  @apply inline-block text-gray-700 text-sm font-bold mb-2;
 }
 
 .select {
   @apply appearance-none py-3 px-4 pr-8 block w-full bg-white border border-gray-300 text-gray-700 rounded leading-tight;
   -webkit-appearance: none;
-
 }
 
 .select:focus {
@@ -42,26 +41,26 @@
 }
 
 .input-file {
-    height: auto;
-    z-index: 2;
-    cursor: pointer;
+  height: auto;
+  z-index: 2;
+  cursor: pointer;
 
-    @apply inline-block opacity-0 pl-0 pr-0 py-3 px-3 overflow-hidden absolute border-none;
+  @apply inline-block opacity-0 pl-0 pr-0 py-3 px-3 overflow-hidden absolute border-none;
 
-    + label {
-      @extend .btn;
-      @extend .btn-default;
+  + label {
+    @extend .btn;
+    @extend .btn-default;
 
-      @apply cursor-pointer inline-flex items-center justify-start w-auto;
+    @apply cursor-pointer inline-flex items-center justify-start w-auto;
 
-      * {
-        pointer-events: none;
-      }
+    * {
+      pointer-events: none;
+    }
 
-      &:focus {
-        outline: 1px dotted #000;
-        outline: -webkit-focus-ring-color auto 5px;
-      }
+    &:focus {
+      outline: 1px dotted #000;
+      outline: -webkit-focus-ring-color auto 5px;
+    }
   }
 }
 
@@ -73,7 +72,7 @@
 
     &:checked ~ label:before {
       content: "";
-      background-image: url('../images/icons/checkmark.svg');
+      background-image: url("../images/icons/checkmark.svg");
       background-size: 10px 10px;
       border-radius: 2px;
       @apply bg-blue-500 border-transparent text-white bg-no-repeat bg-center transition ease-in-out duration-100 shadow-none;
@@ -90,7 +89,7 @@
     &:before {
       border-radius: 2px;
       border: 1px solid rgb(209, 209, 209);
-      box-shadow: inset 0 1px 1px rgba(#ddd, .8);
+      box-shadow: inset 0 1px 1px rgba(#ddd, 0.8);
       content: "";
       height: 16px;
       margin-right: 10px;
@@ -98,7 +97,6 @@
       width: 16px;
 
       @apply bg-white inline-flex items-center justify-center relative transition ease-in-out duration-200;
-
     }
 
     &:hover::before {
@@ -126,7 +124,7 @@
       position: absolute;
       top: 8px;
       left: 5px;
-      box-shadow: 0 1px 1px rgba(#2B6CB0, .9);
+      box-shadow: 0 1px 1px rgba(#2b6cb0, 0.9);
     }
 
     &:disabled {
@@ -139,7 +137,7 @@
 
     &:before {
       border: 1px solid rgb(209, 209, 209);
-      box-shadow: inset 0 1px 1px rgba(#ddd, .8);
+      box-shadow: inset 0 1px 1px rgba(#ddd, 0.8);
       content: "";
       height: 16px;
       margin-right: 4px;
@@ -153,4 +151,9 @@
       @apply bg-gray-100 border-gray-500;
     }
   }
+}
+
+span.required {
+  @apply h-1 w-1 rounded-full bg-red-500 inline-block relative;
+  top: -6px;
 }
