@@ -1,3 +1,9 @@
+<div class="flex items-center justify-center pt-8 text-center">
+    <%= link_to root_path, class:"link text-lg tracking-tight font-semibold group text-red-600 hover:text-red-700 transition ease-in-out flex items-center justify-start" do %>
+    <%= render_svg "icons/railsdevs-mark", title: "railsdevs.com", styles: "fill-current w-8 h-8 text-red-600 group-hover:text-red-700" %>
+    <span class="ml-2 text-2xl font-black text-black">RailsDevs</span>
+  <% end %>
+</div>
 <div data-controller="jobs">
   <div data-target="jobs.mount"></div>
 </div>

@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-4xl font-black">Purchase</h1>
 
-    <a @click.prevent="prev()" class="btn btn-default">Back</a>
+    <a @click.prevent="prev()" class="btn btn-red btn-lg">Back</a>
   </div>
 </template>
 

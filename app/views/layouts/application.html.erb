@@ -4,7 +4,7 @@
 
   <body class="font-sans font-normal leading-normal text-gray-800 bg-white">
     <%= render "shared/flash_notice" %>
-    <%= render "shared/header" %>
+    <%= render "shared/header" unless current_page?(new_job_url) %>
 
     <%= yield :hero %>
 
