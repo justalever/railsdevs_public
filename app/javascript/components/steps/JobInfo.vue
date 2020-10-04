@@ -47,7 +47,7 @@
     </div>
     <company-description :job="job" class="mb-6"></company-description>
 
-    <a @click="next()" class="btn btn-teal btn-lg">Continue</a>
+    <a @click="next()" class="btn btn-red btn-lg">Continue</a>
   </div>
 </template>
 
