@@ -1,14 +1,20 @@
 <template>
   <div class="py-16">
-    <div class="relative max-w-4xl p-4 mx-auto mb-10 bg-white border rounded shadow-sm">
-      <div class="p-10">
+    <div
+      class="relative max-w-4xl p-4 mx-auto mb-10 bg-white border rounded shadow-sm"
+    >
+      <div class="p-2 lg:p-10">
         <form @submit.prevent="submit" enctype="multipart/form-data">
           <div v-if="step === 1">
             <JobInfo :job="job" @nextStep="handleNextStep" />
           </div>
 
           <div v-if="step === 2">
-            <JobPreview :job="job" @nextStep="handleNextStep" @prevStep="handlePrevStep" />
+            <JobPreview
+              :job="job"
+              @nextStep="handleNextStep"
+              @prevStep="handlePrevStep"
+            />
           </div>
 
           <div v-if="step === 3">

@@ -5,7 +5,7 @@
       <span class="mt-3 ml-1 required"></span>
     </div>
 
-    <div class="flex items-center justify-start">
+    <div class="flex items-center justify-start pt-2">
       <div class="mr-5">
         <input type="radio" value="Yes" v-model="job.remote" id="isRemote" />
         <label for="isRemote" class="font-normal label">Yes</label>
