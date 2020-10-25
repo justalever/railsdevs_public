@@ -7,15 +7,15 @@
     >
       <div class="p-2 lg:px-10 lg:pt-6 lg:pb-10">
         <form @submit.prevent="submit" enctype="multipart/form-data">
-          <div v-if="step === 1">
+          <div v-if="$store.form.step === 1">
             <JobInfo @nextStep="handleNextStep" />
           </div>
 
-          <div v-if="step === 2">
+          <div v-if="$store.form.step === 2">
             <JobPreview @nextStep="handleNextStep" @prevStep="handlePrevStep" />
           </div>
 
-          <div v-if="step === 3">
+          <div v-if="$store.form.step === 3">
             <JobPurchase @prevStep="handlePrevStep" />
           </div>
         </form>
@@ -32,11 +32,6 @@ import JobPurchase from "./steps/JobPurchase";
 import StepPagination from "./StepPagination";
 
 export default {
-  data() {
-    return {
-      step: this.$store.form.step,
-    };
-  },
   components: {
     JobInfo,
     JobPreview,

@@ -7,6 +7,7 @@ Vue.use(TurbolinksAdapter)
 
 Vue.prototype.$store = store
 Vue.prototype.$actions = actions
+
 Vue.prototype.$http = ky.extend({
   hooks: {
     beforeRequest: [
