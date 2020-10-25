@@ -16,11 +16,5 @@ export default {
   components: {
     VueTrix,
   },
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
-  },
 };
 </script>
