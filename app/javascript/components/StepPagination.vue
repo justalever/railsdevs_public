@@ -10,7 +10,7 @@
         }"
       >
         <p class="text-xs text-gray-600 uppercase lg:text-sm">Step 1</p>
-        <h3 :class="{}" class="text-sm font-black lg:text-xl">Job Details</h3>
+        <h3 class="text-sm font-black lg:text-xl">Job Details</h3>
       </div>
       <div
         class="px-2 pt-4 pb-2 border-b-4 border-transparent lg:col-span-4 lg:pt-6 lg:px-6 lg:pb-4"

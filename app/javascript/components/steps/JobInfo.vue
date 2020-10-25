@@ -82,17 +82,6 @@ export default {
     EstimatedHours,
     FileSelect,
   },
-  data() {
-    return {
-      jobType: "Full-time",
-    };
-  },
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
-  },
   methods: {
     next() {
       this.$emit("nextStep");
