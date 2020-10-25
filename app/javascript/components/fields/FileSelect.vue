@@ -61,13 +61,22 @@ export default {
 
       reader.onload = (e) => {
         vm.companyImage = e.target.result;
+        localStorage.setItem("logoImage", JSON.stringify(vm.companyImage));
       };
 
       reader.readAsDataURL(file);
     },
     removeImage() {
       this.companyImage = "";
+      if (localStorage.getItem("logoImage")) {
+        localStorage.removeItem("logoImage");
+      }
     },
+  },
+  created() {
+    if (localStorage.getItem("logoImage")) {
+      this.companyImage = JSON.parse(localStorage.getItem("logoImage"));
+    }
   },
 };
 </script>

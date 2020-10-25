@@ -3,7 +3,7 @@
     <label for="job-description" class="label">Job description</label>
     <span class="required"></span>
     <VueTrix
-      v-model="job.description"
+      v-model="$store.form.job.description"
       placeholder="Enter more details about the role"
       localStorage
     />
@@ -15,12 +15,6 @@ import VueTrix from "vue-trix";
 export default {
   components: {
     VueTrix,
-  },
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
   },
 };
 </script>

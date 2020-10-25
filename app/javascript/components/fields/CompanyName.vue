@@ -5,13 +5,11 @@
     <input
       type="text"
       id="company-name"
+      :value="$store.form.job.companyName"
+      @input="$actions.updateForm('companyName', $event.target.value)"
       placeholder="Apple, Inc."
       class="input"
       required
     />
   </div>
 </template>
-
-<script>
-export default {};
-</script>

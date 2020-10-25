@@ -8,21 +8,21 @@
       <span class="mt-2 ml-1 required"></span>
     </div>
 
-    <job-title :job="job" class="mb-6"></job-title>
-    <apply-link :job="job" class="mb-6"></apply-link>
-    <job-description :job="job" class="mb-6"></job-description>
+    <job-title class="mb-6"></job-title>
+    <apply-link class="mb-6"></apply-link>
+    <job-description class="mb-6"></job-description>
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
-      <job-experience :job="job" class="lg:col-span-1"></job-experience>
-      <job-remote :job="job" class="lg:col-span-1"></job-remote>
+      <job-experience class="lg:col-span-1"></job-experience>
+      <job-remote class="lg:col-span-1"></job-remote>
     </div>
     <div class="grid grid-cols-1 gap-6 mb-10 lg:grid-cols-2">
-      <compensation-type :job="job" class="lg:col-span-1"></compensation-type>
+      <compensation-type class="lg:col-span-1"></compensation-type>
       <estimated-hours
-        v-if="jobType == 'Contract'"
+        v-if="$store.form.job.compensationType == 'Contract'"
         class="lg:col-span-1"
       ></estimated-hours>
       <compensation-range
-        v-if="jobType == 'Full-time'"
+        v-if="$store.form.job.compensationType == 'Full-time'"
         class="lg:col-span-1"
       ></compensation-range>
     </div>
@@ -32,20 +32,20 @@
     <div class="grid grid-cols-1 gap-6 mb-10 lg:grid-cols-2">
       <div class="lg:col-span-1">
         <p class="block w-full label">Company logo</p>
-        <file-select v-model="job.companyLogo"></file-select>
+        <file-select v-model="$store.form.job.companyLogo"></file-select>
         <p class="my-1 text-sm text-gray-500">
           While not required, we recommend adding a company logo to help your
           listing stand out.
         </p>
       </div>
-      <company-website :job="job" class="lg:col-span-1"></company-website>
+      <company-website class="lg:col-span-1"></company-website>
     </div>
 
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
-      <company-name :job="job" class="lg:col-span-1"></company-name>
-      <company-email :job="job" class="lg:col-span-1"></company-email>
+      <company-name class="lg:col-span-1"></company-name>
+      <company-email class="lg:col-span-1"></company-email>
     </div>
-    <company-description :job="job" class="mb-6"></company-description>
+    <company-description class="mb-6"></company-description>
 
     <a @click="next()" class="btn btn-red btn-lg">Continue</a>
   </div>
@@ -82,21 +82,33 @@ export default {
     EstimatedHours,
     FileSelect,
   },
-  data() {
-    return {
-      jobType: "Full-time",
-    };
-  },
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
-  },
   methods: {
     next() {
       this.$emit("nextStep");
     },
+  },
+  created() {
+    const storedForm = this.$actions.openStorage();
+
+    if (storedForm) {
+      this.$store.form.job.title = storedForm.title;
+      this.$store.form.job.companyName = storedForm.companyName;
+      this.$store.form.job.companyWebsite = storedForm.companyWebsite;
+      this.$store.form.job.companyLogo = storedForm.companyLogo;
+      this.$store.form.job.companyDescription = storedForm.companyDescription;
+      this.$store.form.job.email = storedForm.email;
+      this.$store.form.job.compensationRange = storedForm.compensationRange;
+      this.$store.form.job.compensationType = storedForm.compensationType;
+      this.$store.form.job.description = storedForm.description;
+      this.$store.form.job.estimatedHours = storedForm.estimatedHours;
+      this.$store.form.job.headquarters = storedForm.headquarters;
+      this.$store.form.job.linkToApply = storedForm.linkToApply;
+      this.$store.form.job.price = storedForm.price;
+      this.$store.form.job.remote = storedForm.remote;
+      this.$store.form.job.title = storedForm.title;
+      this.$store.form.job.yearsOfExperience = storedForm.yearsOfExperience;
+      this.$store.form.job.upsellType = storedForm.upsellType;
+    }
   },
 };
 </script>

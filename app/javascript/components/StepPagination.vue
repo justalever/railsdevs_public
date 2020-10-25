@@ -6,15 +6,16 @@
       <div
         class="px-2 pt-4 pb-2 border-b-4 border-transparent lg:col-span-4 lg:pt-6 lg:px-6 lg:pb-4"
         :class="{
-          'border-red-500 bg-white rounded-tl-lg shadow-sm': step === 1,
+          'border-red-500 bg-white rounded-tl-lg shadow-sm':
+            $store.form.step === 1,
         }"
       >
         <p class="text-xs text-gray-600 uppercase lg:text-sm">Step 1</p>
-        <h3 :class="{}" class="text-sm font-black lg:text-xl">Job Details</h3>
+        <h3 class="text-sm font-black lg:text-xl">Job Details</h3>
       </div>
       <div
         class="px-2 pt-4 pb-2 border-b-4 border-transparent lg:col-span-4 lg:pt-6 lg:px-6 lg:pb-4"
-        :class="{ 'border-red-500 bg-white shadow-sm': step === 2 }"
+        :class="{ 'border-red-500 bg-white shadow-sm': $store.form.step === 2 }"
       >
         <p class="text-xs text-gray-600 uppercase lg:text-sm">Step 2</p>
         <h3 class="text-sm font-black lg:text-xl">Preview</h3>
@@ -22,7 +23,8 @@
       <div
         class="px-2 pt-4 pb-2 border-b-4 border-transparent lg:col-span-4 lg:pt-6 lg:px-6 lg:pb-4"
         :class="{
-          'border-red-500 bg-white rounded-tr-lg shadow-sm': step === 3,
+          'border-red-500 bg-white rounded-tr-lg shadow-sm':
+            $store.form.step === 3,
         }"
       >
         <p class="text-xs text-gray-600 uppercase lg:text-sm">Step 3</p>
@@ -31,14 +33,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    step: {
-      type: Number,
-      required: true,
-    },
-  },
-};
-</script>
