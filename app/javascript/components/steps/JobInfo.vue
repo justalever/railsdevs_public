@@ -47,7 +47,9 @@
     </div>
     <company-description class="mb-6"></company-description>
 
-    <a @click="next()" class="btn btn-red btn-lg">Continue</a>
+    <form-pagination position="justify-end">
+      <a @click="next()" class="btn btn-white btn-outline btn-lg">Continue</a>
+    </form-pagination>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ import CompanyEmail from "../fields/CompanyEmail";
 import CompanyWebsite from "../fields/CompanyWebsite";
 import CompanyDescription from "../fields/CompanyDescription";
 import FileSelect from "../fields/FileSelect";
+import FormPagination from "../FormPagination";
 
 export default {
   components: {
@@ -81,6 +84,7 @@ export default {
     JobRemote,
     EstimatedHours,
     FileSelect,
+    FormPagination,
   },
   methods: {
     next() {
