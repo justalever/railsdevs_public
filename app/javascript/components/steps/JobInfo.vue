@@ -17,10 +17,6 @@
     </div>
     <div class="grid grid-cols-1 gap-6 mb-10 lg:grid-cols-2">
       <compensation-type class="lg:col-span-1"></compensation-type>
-      <estimated-hours
-        v-if="$store.form.job.compensationType == 'Contract'"
-        class="lg:col-span-1"
-      ></estimated-hours>
       <compensation-range
         v-if="$store.form.job.compensationType == 'Full-time'"
         class="lg:col-span-1"
@@ -48,6 +44,12 @@
     <company-description class="mb-6"></company-description>
 
     <form-pagination position="justify-end">
+      <div
+        v-if="$actions.formattedPrice()"
+        class="mr-4 text-3xl font-black text-white"
+      >
+        {{ $actions.formattedPrice() }}
+      </div>
       <a @click="next()" class="btn btn-white btn-outline btn-lg">Continue</a>
     </form-pagination>
   </div>
@@ -60,7 +62,6 @@ import JobDescription from "../fields/JobDescription";
 import JobExperience from "../fields/JobExperience";
 import CompensationType from "../fields/CompensationType";
 import CompensationRange from "../fields/CompensationRange";
-import EstimatedHours from "../fields/EstimatedHours";
 import JobRemote from "../fields/JobRemote";
 import CompanyName from "../fields/CompanyName";
 import CompanyEmail from "../fields/CompanyEmail";
@@ -82,7 +83,6 @@ export default {
     JobDescription,
     JobExperience,
     JobRemote,
-    EstimatedHours,
     FileSelect,
     FormPagination,
   },

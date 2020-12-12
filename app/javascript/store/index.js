@@ -12,7 +12,6 @@ export const store = Vue.observable({
       compensationRange: null,
       compensationType: null,
       description: null,
-      estimatedHours: null,
       headquarters: null,
       linkToApply: null,
       price: 199,
@@ -21,7 +20,8 @@ export const store = Vue.observable({
       title: null,
       yearsOfExperience: null,
       upsellType: "No, thanks"
-    }
+    },
+    cardName: null
   }
 })
 
@@ -42,5 +42,13 @@ export const actions = {
 
   saveStorage(form) {
     localStorage.setItem("form", JSON.stringify(form));
+  },
+
+  formattedPrice() {
+    const price = new Intl.NumberFormat("en-EN", {
+      style: "currency",
+      currency: "USD",
+    }).format(store.form.job.price);
+    return price
   },
 };

@@ -12,6 +12,10 @@ const VueComponent = (component) => class extends Controller {
       render: h => h(component),
       data: store
     })
+
+    window.paymentConfig = {
+      stripeKey: document.querySelector("meta[name='stripe-public-key']").content
+    }
   }
 }
 

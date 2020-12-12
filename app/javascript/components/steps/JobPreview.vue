@@ -6,9 +6,17 @@
     </div>
 
     <form-pagination position="justify-between">
-      <a @click.prevent="prev()" class="btn btn-white btn-outline btn-lg"
-        >Back</a
+      <div class="lg:flex-1">
+        <a @click.prevent="prev()" class="btn btn-white btn-outline btn-lg"
+          >Back</a
+        >
+      </div>
+      <div
+        v-if="$actions.formattedPrice()"
+        class="mr-4 text-3xl font-black text-right text-white"
       >
+        {{ $actions.formattedPrice() }}
+      </div>
       <a @click.prevent="next()" class="btn btn-white btn-outline btn-lg"
         >Next</a
       >
