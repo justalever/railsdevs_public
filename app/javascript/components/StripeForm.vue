@@ -18,6 +18,7 @@
     <button
       class="mt-6 btn btn-red btn-lg"
       @click.prevent="handleSubmit($event)"
+      :disabled="disable"
     >
       Pay with credit card
     </button>
@@ -39,40 +40,63 @@ const style = {
     color: "#fa755a",
     iconColor: "#fa755a",
   },
-};
+}
 
 export default {
   data() {
     return {
       stripe: null,
       card: null,
-      disable: true,
+      disable: false,
       errors: null,
       stripeKey: window.paymentConfig.stripeKey,
       showPaymentForm: true,
       cardComplete: false,
-    };
+    }
   },
   methods: {
     handleCardInput(value) {
-      this.$actions.updateForm("cardName", value);
+      this.$actions.updateForm("cardName", value)
     },
     handleSubmit() {
       if (!this.card || !this.stripe) {
-        return;
+        return
       }
-      //this.handleCardPayment()
+      this.handleCardPayment()
     },
+    handleCardPayment() {
+      let self = this
+      this.disable = true
+
+      this.stripe.confirmCardPayment(this.$store.form.paymentIntentClientSecret, {
+        payment_method: {
+          card: this.card,
+          billing_details: {
+            name: this.$store.form.cardName
+          },
+        },
+      }).then(result => {
+        if (result.error) {
+          console.log('error', result)
+
+        } else {
+          if (result.paymentIntent.status === 'succeeded') {
+            this.$actions.handlePurchase(result)
+            this.disable = false
+          }
+        }
+      })
+    }
   },
   mounted() {
-    this.stripe = Stripe(this.stripeKey);
-    this.card = this.stripe.elements().create("card", { style });
-    this.card.mount("#card-element");
+    this.stripe = Stripe(this.stripeKey)
+    this.card = this.stripe.elements().create("card", { style })
+    this.card.mount("#card-element")
   },
   beforeDestroy() {
     if (this.card) {
-      this.card.unmount();
-      this.card = null;
+      this.card.unmount()
+      this.card = null
     }
   },
 };

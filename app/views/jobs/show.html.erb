@@ -1,5 +1,11 @@
 <div class="container px-4 mx-auto mt-10 mb-24 lg:px-24">
 
+  <% if @job.pending? %>
+  <div class="w-full p-3 mb-6 text-white bg-blue-400 rounded">
+    Pending review
+  </div>
+  <% end %>
+
   <div class="flex flex-wrap items-center justify-between border-b lg:border-0">
     <%= link_to root_path, class: "mb-4 inline-flex items-center justify-start group" do %>
       <%= render_svg "icons/chevron-left", styles: "fill-current w-5 h-5 text-red-600 group-hover:text-red-700" %>

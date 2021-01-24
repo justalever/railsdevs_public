@@ -27,15 +27,10 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.user = current_user
-
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
-      else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.save
+      render json: { redirect_url: job_url(@job), notice: "Thanks for posting! Your job is now pending review." }
+    else
+      render json: @job.errors
     end
   end
 
@@ -63,6 +58,20 @@ class JobsController < ApplicationController
     end
   end
 
+
+  def intents
+    intent_amount = Job::PRICING[:base]
+    intent_amount = intent_amount * 100
+
+    @intent = Stripe::PaymentIntent.create({
+      amount: intent_amount,
+      currency: "usd",
+      payment_method_types: ["card"]
+    })
+
+    render json: @intent
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
@@ -71,7 +80,7 @@ class JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(
+      params.permit(
         :company_logo,
         :company_name,
         :company_website,

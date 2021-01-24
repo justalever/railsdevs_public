@@ -34,6 +34,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Job < ApplicationRecord
+  after_create :set_pending_review
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :finders]
@@ -49,6 +50,13 @@ class Job < ApplicationRecord
   scope :pending, -> { where(status: JOB_STATUSES[:pending]) }
   scope :published, -> { where(status: JOB_STATUSES[:published]) }
   scope :archived, -> { where(status: JOB_STATUSES[:archived]) }
+
+  BASE_JOB_PRICE = 199
+
+  # pricing
+  PRICING = {
+    base: BASE_JOB_PRICE
+  }
 
   # constants
   COMPENSATION_TYPES = [
@@ -109,7 +117,6 @@ class Job < ApplicationRecord
   def archived?
     self.status == Job::JOB_STATUSES[:archived]
   end
-
 
   def should_generate_new_friendly_id?
     if !slug?

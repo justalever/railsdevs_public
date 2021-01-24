@@ -26,10 +26,16 @@
 
 <script>
 // import rootData from "store";
-import JobInfo from "./steps/JobInfo";
-import JobPreview from "./steps/JobPreview";
-import JobPurchase from "./steps/JobPurchase";
-import StepPagination from "./StepPagination";
+import JobInfo from "./steps/JobInfo"
+import JobPreview from "./steps/JobPreview"
+import JobPurchase from "./steps/JobPurchase"
+import StepPagination from "./StepPagination"
+import { getMetaValue } from "helpers"
+
+import axios from "axios"
+
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers.post["X-CSRF-Token"] = getMetaValue("csrf-token")
 
 export default {
   components: {
@@ -40,14 +46,23 @@ export default {
   },
   methods: {
     handleNextStep() {
-      this.$store.form.step++;
+      this.$store.form.step++
     },
     handlePrevStep() {
-      this.$store.form.step--;
+      this.$store.form.step--
     },
   },
   mounted() {
-    this.$actions.updateForm("price", this.$store.form.job.price);
+    this.$actions.updateForm("price", this.$store.form.job.price)
+
+    axios({
+      url: "/intents",
+      method: "POST",
+    }).then(response => {
+      this.$store.form.paymentIntentClientSecret = response.data.client_secret
+    }).catch(error => {
+      console.log(error)
+    })
   },
 };
 </script>
