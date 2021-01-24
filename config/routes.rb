@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   mount SimpleDiscussion::Engine => "/forum"
 
+  post "intents", to: "jobs#intents"
+
   devise_for :users
   root to: 'jobs#index'
 end
