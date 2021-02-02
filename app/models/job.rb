@@ -51,10 +51,23 @@ class Job < ApplicationRecord
   scope :archived, -> { where(status: JOB_STATUSES[:archived]) }
 
   BASE_JOB_PRICE = 199
+  GOOD_JOB_PRICE = BASE_JOB_PRICE + 49
+  BETTER_JOB_PRICE = BASE_JOB_PRICE + 69
+  GREAT_JOB_PRICE = BASE_JOB_PRICE + 149
 
   # pricing
   PRICING = {
-    base: BASE_JOB_PRICE
+    base: BASE_JOB_PRICE,
+    good: GOOD_JOB_PRICE,
+    better: BETTER_JOB_PRICE,
+    great: GREAT_JOB_PRICE
+  }
+
+  UPSELL_TYPES = {
+    no_thanks: "no-thanks",
+    good: "good",
+    better: "better",
+    great: "great"
   }
 
   # constants

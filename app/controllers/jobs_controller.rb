@@ -60,7 +60,19 @@ class JobsController < ApplicationController
 
 
   def intents
-    intent_amount = Job::PRICING[:base]
+    intent_amount = case params[:upsell_type].parameterize
+    when Job::UPSELL_TYPES[:no_thanks]
+      Job::PRICING[:base]
+    when Job::UPSELL_TYPES[:good]
+      Job::PRICING[:good]
+    when Job::UPSELL_TYPES[:better]
+      Job::PRICING[:better]
+    when Job::UPSELL_TYPES[:great]
+      Job::PRICING[:great]
+    else
+      Job::PRICING[:base]
+    end
+
     intent_amount = intent_amount * 100
 
     @intent = Stripe::PaymentIntent.create({
