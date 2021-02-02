@@ -43,6 +43,8 @@
     </div>
     <company-description class="mb-6"></company-description>
 
+    <job-upsells></job-upsells>
+
     <form-pagination position="justify-end">
       <div
         v-if="$actions.formattedPrice()"
@@ -56,19 +58,20 @@
 </template>
 
 <script>
-import ApplyLink from "../fields/ApplyLink";
-import JobTitle from "../fields/JobTitle";
-import JobDescription from "../fields/JobDescription";
-import JobExperience from "../fields/JobExperience";
-import CompensationType from "../fields/CompensationType";
-import CompensationRange from "../fields/CompensationRange";
-import JobRemote from "../fields/JobRemote";
-import CompanyName from "../fields/CompanyName";
-import CompanyEmail from "../fields/CompanyEmail";
-import CompanyWebsite from "../fields/CompanyWebsite";
-import CompanyDescription from "../fields/CompanyDescription";
-import FileSelect from "../fields/FileSelect";
-import FormPagination from "../FormPagination";
+import ApplyLink from "../fields/ApplyLink"
+import JobTitle from "../fields/JobTitle"
+import JobDescription from "../fields/JobDescription"
+import JobExperience from "../fields/JobExperience"
+import CompensationType from "../fields/CompensationType"
+import CompensationRange from "../fields/CompensationRange"
+import JobRemote from "../fields/JobRemote"
+import CompanyName from "../fields/CompanyName"
+import CompanyEmail from "../fields/CompanyEmail"
+import CompanyWebsite from "../fields/CompanyWebsite"
+import CompanyDescription from "../fields/CompanyDescription"
+import FileSelect from "../fields/FileSelect"
+import FormPagination from "../FormPagination"
+import JobUpsells from "../JobUpsells"
 
 export default {
   components: {
@@ -85,33 +88,34 @@ export default {
     JobRemote,
     FileSelect,
     FormPagination,
+    JobUpsells
   },
   methods: {
     next() {
-      this.$emit("nextStep");
+      this.$emit("nextStep")
     },
   },
   created() {
-    const storedForm = this.$actions.openStorage();
+    const storedForm = this.$actions.openStorage()
 
     if (storedForm) {
-      this.$store.form.job.title = storedForm.title;
-      this.$store.form.job.companyName = storedForm.companyName;
-      this.$store.form.job.companyWebsite = storedForm.companyWebsite;
-      this.$store.form.job.companyLogo = storedForm.companyLogo;
-      this.$store.form.job.companyDescription = storedForm.companyDescription;
-      this.$store.form.job.email = storedForm.email;
-      this.$store.form.job.compensationRange = storedForm.compensationRange;
-      this.$store.form.job.compensationType = storedForm.compensationType;
-      this.$store.form.job.description = storedForm.description;
-      this.$store.form.job.estimatedHours = storedForm.estimatedHours;
-      this.$store.form.job.headquarters = storedForm.headquarters;
-      this.$store.form.job.linkToApply = storedForm.linkToApply;
-      this.$store.form.job.price = storedForm.price;
-      this.$store.form.job.remote = storedForm.remote;
-      this.$store.form.job.title = storedForm.title;
-      this.$store.form.job.yearsOfExperience = storedForm.yearsOfExperience;
-      this.$store.form.job.upsellType = storedForm.upsellType;
+      this.$store.form.job.title = storedForm.title
+      this.$store.form.job.companyName = storedForm.companyName
+      this.$store.form.job.companyWebsite = storedForm.companyWebsite
+      this.$store.form.job.companyLogo = storedForm.companyLogo
+      this.$store.form.job.companyDescription = storedForm.companyDescription
+      this.$store.form.job.email = storedForm.email
+      this.$store.form.job.compensationRange = storedForm.compensationRange
+      this.$store.form.job.compensationType = storedForm.compensationType
+      this.$store.form.job.description = storedForm.description
+      this.$store.form.job.estimatedHours = storedForm.estimatedHours
+      this.$store.form.job.headquarters = storedForm.headquarters
+      this.$store.form.job.linkToApply = storedForm.linkToApply
+      this.$store.form.job.price = storedForm.price
+      this.$store.form.job.remote = storedForm.remote
+      this.$store.form.job.title = storedForm.title
+      this.$store.form.job.yearsOfExperience = storedForm.yearsOfExperience
+      this.$store.form.job.upsellType = storedForm.upsellType
     }
   },
 };

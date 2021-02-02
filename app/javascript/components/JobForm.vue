@@ -55,11 +55,20 @@ export default {
   mounted() {
     this.$actions.updateForm("price", this.$store.form.job.price)
 
+    const data = new FormData()
+    data.append("upsell_type", this.$store.form.job.upsellType)
+
     axios({
       url: "/intents",
       method: "POST",
+      data: data,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
     }).then(response => {
       this.$store.form.paymentIntentClientSecret = response.data.client_secret
+      this.$store.form.job.price = response.data.amount / 100
     }).catch(error => {
       console.log(error)
     })

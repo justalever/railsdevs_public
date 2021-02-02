@@ -27,7 +27,12 @@ export const store = Vue.observable({
       yearsOfExperience: null,
       upsellType: "No, thanks"
     },
-    paymentIntentClientSecret: null
+    paymentIntentClientSecret: null,
+    upsellPricing: {
+      good: 49,
+      better: 69,
+      great: 149
+    }
   }
 })
 
