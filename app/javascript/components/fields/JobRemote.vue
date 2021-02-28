@@ -9,19 +9,20 @@
       <div class="mr-5">
         <input
           type="radio"
-          value="Yes"
+          name="remote"
+          value="true"
           v-model="$store.form.job.remote"
-          @change="$actions.updateForm('remote', $event.target.value)"
+          @change="$actions.updateForm('remote', true)"
           id="isRemote"
-          checked
         />
         <label for="isRemote" class="font-normal label">Yes</label>
       </div>
       <div>
         <input
           type="radio"
-          value="No"
-          @change="$actions.updateForm('remote', $event.target.value)"
+          name="remote"
+          value="false"
+          @change="$actions.updateForm('remote', false)"
           v-model="$store.form.job.remote"
           id="isNotRemote"
         />

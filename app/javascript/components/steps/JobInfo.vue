@@ -52,7 +52,12 @@
       >
         {{ $actions.formattedPrice() }}
       </div>
-      <a @click="next()" class="btn btn-white btn-outline btn-lg">Continue</a>
+      <a
+        @click="next()"
+        class="btn btn-white btn-outline btn-lg"
+        :class="{ 'opacity-25 pointer-events-none': !$store.formInvalid }"
+        >Continue</a
+      >
     </form-pagination>
   </div>
 </template>
@@ -94,6 +99,13 @@ export default {
     next() {
       this.$emit("nextStep")
     },
+  },
+  mounted() {
+    document.querySelector('form').addEventListener('input', () => {
+      const childrenWithValidations = this.$children.filter(c => c.$v)
+      this.$store.formInvalid = childrenWithValidations.every(child => child.$v.$invalid == false)
+
+    })
   },
   created() {
     const storedForm = this.$actions.openStorage()

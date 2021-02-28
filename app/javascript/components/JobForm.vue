@@ -6,7 +6,11 @@
       class="relative max-w-4xl p-4 mx-auto mb-10 bg-white border-b-2 border-l-2 border-r-2 border-black rounded-b-lg shadow-xl"
     >
       <div class="p-2 lg:px-10 lg:pt-6 lg:pb-10">
-        <form @submit.prevent="submit" enctype="multipart/form-data">
+        <form
+          @submit.prevent="submit"
+          enctype="multipart/form-data"
+          ref="jobForm"
+        >
           <div v-if="$store.form.step === 1">
             <JobInfo @nextStep="handleNextStep" />
           </div>
@@ -55,6 +59,10 @@ export default {
 
   mounted() {
     this.$actions.updateForm("price", this.$store.form.job.price)
+    this.$actions.updateForm("remote", true)
+    this.$actions.updateForm("compensationType", "Full-time")
+    this.$actions.updateForm("yearsOfExperience", "3")
+    this.$actions.updateForm("upsellType", "No thanks")
 
     const data = new FormData()
     data.append("upsell_type", this.$store.form.job.upsellType)
