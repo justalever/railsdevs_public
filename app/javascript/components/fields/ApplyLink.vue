@@ -7,23 +7,42 @@
       id="apply-link"
       class="input"
       required
-      :value="$store.form.job.linkToApply"
-      @change="$actions.updateForm('linkToApply', $event.target.value)"
+      v-model.trim="linkToApply"
+      @input="handleLinkToApplyInput($event.target.value)"
     />
-    <!-- <div class="text-sm text-red-500" v-if="hasErrors">A URL is required</div>
-    <div class="text-sm text-red-500" v-if="!validUrl">
+    <div v-if="$v.linkToApply.$error" class="text-sm text-red-500">
+      A URL is required
+    </div>
+    <div class="text-sm text-red-500" v-if="!$v.linkToApply.url">
       A valid URL is required
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
+import { required, url } from "vuelidate/lib/validators"
+
 export default {
-  computed: {
-
+  data() {
+    return {
+      linkToApply: this.$store.form.job.linkToApply
+    }
   },
+  validations: {
+    linkToApply: {
+      required,
+      url
+    }
+  },
+  methods: {
+    handleLinkToApplyInput(value) {
+      this.$actions.updateForm('linkToApply', value)
+      // this.setLink(value)
+    },
 
-  mounted() {
+    setLink(value) {
+      this.$v.linkToApply.$touch()
+    },
   }
 }
 </script>

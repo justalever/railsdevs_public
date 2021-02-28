@@ -16,7 +16,8 @@
       A title is required
     </div>
     <div v-if="!$v.title.minLength" class="text-sm text-red-500">
-      Title must have at least {{ $v.title.$params.minLength.min }} letters.
+      Title must have at least
+      {{ $v.title.$params.minLength.min }} characters.
     </div>
   </div>
 </template>
@@ -41,11 +42,6 @@ export default {
       this.$actions.updateForm('title', value)
     },
   },
-  computed: {
-    titleMin() {
-      return this.$v.title.minLength.min
-    }
 
-  }
 }
 </script>

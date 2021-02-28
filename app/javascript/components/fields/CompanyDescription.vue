@@ -11,16 +11,17 @@
 </template>
 
 <script>
-import VueTrix from "vue-trix";
+import VueTrix from "vue-trix"
 export default {
   components: {
     VueTrix,
   },
-  method: {
+  methods: {
     // handleFileAcceptEvent(event) {
     //   event.preventDefault();
     //   alert("File attachments are not supported");
     // },
   },
+
 };
 </script>

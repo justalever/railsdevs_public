@@ -16,15 +16,15 @@ export const store = Vue.observable({
       companyDescription: null,
       email: null,
       compensationRange: null,
-      compensationType: null,
+      compensationType: "Full-time",
       description: null,
       headquarters: null,
       linkToApply: null,
       price: 199,
       basePrice: 199,
-      remote: "Yes",
+      remote: true,
       title: null,
-      yearsOfExperience: null,
+      yearsOfExperience: 3,
       upsellType: "No, thanks"
     },
     paymentIntentClientSecret: null,
@@ -35,6 +35,7 @@ export const store = Vue.observable({
     }
   },
   showPaymentButton: true,
+  formInvalid: false
 
 })
 
