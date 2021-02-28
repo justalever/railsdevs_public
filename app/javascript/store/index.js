@@ -33,7 +33,9 @@ export const store = Vue.observable({
       better: 69,
       great: 149
     }
-  }
+  },
+  showPaymentButton: true,
+
 })
 
 export const actions = {
@@ -101,15 +103,11 @@ export const actions = {
     }).then(response => {
       if (response.status === 200) {
         window.location = response.data.redirect_url
-        // Success message console.log(response.data.notice)
       }
     })
       .catch(errors => {
         // @job.errors TODO: Render in view
         console.log(errors)
       })
-
-
-
   }
 }

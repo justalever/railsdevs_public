@@ -3,7 +3,10 @@ import { store, actions } from "../store"
 import ky from "ky"
 import TurbolinksAdapter from "vue-turbolinks"
 import { getMetaValue } from "helpers"
+import Vuelidate from 'vuelidate'
+
 Vue.use(TurbolinksAdapter)
+Vue.use(Vuelidate)
 
 Vue.prototype.$store = store
 Vue.prototype.$actions = actions

@@ -1,6 +1,7 @@
 import { store } from "../store"
 import { Controller } from "stimulus"
 import Vue from "vue"
+import { required, minLength, url, email } from "vuelidate/lib/validators"
 const VueComponent = (component) => class extends Controller {
   static targets = ["mount"]
 
@@ -10,7 +11,8 @@ const VueComponent = (component) => class extends Controller {
     window.jobForm = new Vue({
       el,
       render: h => h(component),
-      data: store
+      data: store,
+
     })
 
     window.paymentConfig = {

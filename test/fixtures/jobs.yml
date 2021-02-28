@@ -7,6 +7,7 @@
 #  company_website     :string
 #  compensation_range  :string
 #  compensation_type   :string
+#  email               :string
 #  estimated_hours     :string
 #  featured            :boolean          default(FALSE)
 #  featured_until      :datetime
