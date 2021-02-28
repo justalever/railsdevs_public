@@ -52,6 +52,7 @@ export default {
       this.$store.form.step--
     },
   },
+
   mounted() {
     this.$actions.updateForm("price", this.$store.form.job.price)
 

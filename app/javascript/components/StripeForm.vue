@@ -7,6 +7,9 @@
         id="cardName"
         @input="handleCardInput($event.target.value)"
         :value="$store.form.cardName"
+        :class="{
+          'opacity-50 pointer-events-none': $store.showPaymentButton == false,
+        }"
         class="input"
         placeholder="Full name"
       />
@@ -18,9 +21,13 @@
     <button
       class="mt-6 btn btn-red btn-lg"
       @click.prevent="handleSubmit($event)"
+      :class="{
+        'opacity-50 pointer-events-none': $store.showPaymentButton == false,
+      }"
       :disabled="disable"
     >
-      Pay with credit card
+      <span v-if="$store.showPaymentButton">Pay with credit card</span>
+      <span v-else>Please wait...</span>
     </button>
   </div>
 </template>
@@ -52,6 +59,7 @@ export default {
       stripeKey: window.paymentConfig.stripeKey,
       showPaymentForm: true,
       cardComplete: false,
+      buttonLabel: "Pay with credit card"
     }
   },
   methods: {
@@ -62,6 +70,8 @@ export default {
       if (!this.card || !this.stripe) {
         return
       }
+      this.$store.showPaymentButton = false
+      this.disable = true
       this.handleCardPayment()
     },
     handleCardPayment() {
