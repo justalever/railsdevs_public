@@ -19,7 +19,7 @@ gem 'webpacker', '~> 4.0'
 gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'friendly_id', '~> 5.3'
 gem 'name_of_person', '~> 1.1', '>= 1.1.1'
-gem 'sidekiq', '~> 6.1', '>= 6.1.1'
+gem 'sidekiq', '~> 6.2'
 gem "inline_svg", "~> 1.7"
 gem "pagy", "~> 3.8"
 gem "pay", "~> 2.1"
